@@ -32,9 +32,3 @@ npm install
 export NODE_OPTIONS=--openssl-legacy-provider
 npm run generate
 
-cat <<EOL > dist/_redirects
-/ /content 301
-EOL
-
-cd ..
-
