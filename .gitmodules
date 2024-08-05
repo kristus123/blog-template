@@ -1,0 +1,3 @@
+[submodule "bloggy"]
+    path = bloggy
+    url = https://github.com/kristus123/bloggy.git
