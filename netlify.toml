@@ -6,3 +6,4 @@
   from = "/"
   to = "/content"
   status = 301
+  force = true
