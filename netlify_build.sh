@@ -1,30 +1,30 @@
 #!/bin/bash
 
 
+blog_categories="["
+
 folders=$(find blog -mindepth 1 -maxdepth 1 -type d)
-
-# Initialize an empty JSON array
-json_array="["
-
-# Iterate over each folder and append to the JSON array
 for folder in $folders; do
     name=$(basename "$folder")
     path="$folder"
-    json_array+="{\"name\":\"$name\", \"path\":\"$path\"},"
+    blog_categories+="{\"name\":\"$name\", \"path\":\"$path\"},"
 done
 
-# Close the JSON array
-json_array+="]"
+blog_categories+="]"
 
-# Display the generated JSON (for debugging)
-echo "$json_array"
+echo "$blog_categories"
 
 git clone https://github.com/kristus123/bloggy.git
+
 rm -r bloggy/content/blog/
 cp -r blog/ bloggy/content/
 
+rm -r bloggy/static/public/
+cp -r public/ bloggy/static/
+
+
 input_file="bloggy/pages/content/index.vue"
-sed -i "s|REPLACE_WITH_FOLDER_INFO|$json_array|" "$input_file"
+sed -i "s|REPLACE_WITH_FOLDER_INFO|$blog_categories|" "$input_file"
 
 
 cd bloggy
