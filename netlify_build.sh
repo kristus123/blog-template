@@ -22,6 +22,9 @@ cp -r blog/ bloggy/content/
 rm -r bloggy/static/public/
 cp -r public/ bloggy/static/
 
+# Delete the 'home button'
+sed -i '/<center>/,/<\/center>/{//!d;}' bloggy/layouts/cv.vue
+
 
 input_file="bloggy/pages/content/index.vue"
 sed -i "s|REPLACE_WITH_FOLDER_INFO|$blog_categories|" "$input_file"
